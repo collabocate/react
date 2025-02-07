@@ -5,6 +5,7 @@ import { FloatingActionControls } from './@section_controls/FloatingActionContro
 import { ModalPopup } from './@section_modal/ModalPopup';
 import { Container } from './@helpers/Container';
 import { Debugger } from './@helpers/Debugger';
+import { GlobalContainer } from './@hooks_state/useGlobal';
 
 export interface CollabocateProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   instance_id: string;
@@ -15,23 +16,22 @@ export const Collabocate: React.FunctionComponent<CollabocateProps> = ({ instanc
   if (!instance_id.length) {
     return (
       <>
-        <Debugger 
+        <Debugger
           message="DEBUGGER: Supply instance_id prop to the Collabocate Component, for plugin to show up on the UI. See docs..."
           bb_function="position"
-          bb_function_class="bb-pos-fixed bb-pos-r30-b20" 
-          bb_class="bb-collabocate_container" 
-        />;
+          bb_function_class="bb-pos-fixed bb-pos-r30-b20"
+          bb_class="bb-collabocate_container"
+        />
+        ;
       </>
     );
   }
   return (
-    <Container 
-      bb_function="position" 
-      bb_function_class="bb-pos-fixed bb-pos-r30-b20" 
-      bb_class='bb-collabocate_container'
-    >
-      <ModalPopup />
-      <FloatingActionControls />
-    </Container>
+    <GlobalContainer.Provider initialState={{ instanceId: instance_id }}>
+      <Container bb_function="position" bb_function_class="bb-pos-fixed bb-pos-r30-b20" bb_class="bb-collabocate_container">
+        <ModalPopup />
+        <FloatingActionControls />
+      </Container>
+    </GlobalContainer.Provider>
   );
 };
