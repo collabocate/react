@@ -1,9 +1,12 @@
 import React from 'react';
 import { Container } from '../@helpers/Container';
+import { GlobalContainer } from '../@hooks_state/useGlobal';
 
 export interface FloatingActionControlsProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {}
 
 export const FloatingActionControls: React.FunctionComponent<FloatingActionControlsProps> = (props: FloatingActionControlsProps) => {
+  const { instanceId, updateInstanceId } = GlobalContainer.useContainer();
+  console.log('FloatingActionControls instance_id:', instanceId);
   return (
     <>
       <Container bb_function="display" bb_function_class="bb-disp-inline-flex" bb_class="bb-floating-controls">
