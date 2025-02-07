@@ -9,7 +9,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --watch",
     "tsc": "tsc"
   },
   "devDependencies": {
