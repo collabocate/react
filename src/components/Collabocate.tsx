@@ -28,10 +28,10 @@ export const Collabocate: React.FunctionComponent<CollabocateProps> = ({ instanc
   }
   return (
     <GlobalContainer.Provider initialState={{ instanceId: instance_id }}>
-      <Container bb_function="position" bb_function_class="bb-pos-fixed bb-pos-r30-b20" bb_class="bb-collabocate_container">
-        <ModalPopup />
-        <FloatingActionControls />
-      </Container>
+    <Container bb_function="position" bb_function_class="bb-pos-fixed bb-pos-r30-b20" bb_class="bb-collabocate_container">
+      <ModalPopup />
+      <FloatingActionControls />
+    </Container>
     </GlobalContainer.Provider>
   );
 };
