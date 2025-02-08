@@ -19,8 +19,8 @@ export const Collabocate: React.FunctionComponent<CollabocateProps> = ({ instanc
         <Debugger 
           message="DEBUGGER: Supply instance_id prop to the Collabocate Component, for plugin to show up on the UI. See docs..."
           bb_function="position"
-          bb_function_class="bb-pos-fixed bb-pos-r30-b20"
-          bb_class="bb-collabocate_container"
+          bb_function_class="bb-pos-fixed bb-pos-r30-b20" 
+          bb_class="bb-collabocate_container" 
         />;
       </>
     );
@@ -29,9 +29,8 @@ export const Collabocate: React.FunctionComponent<CollabocateProps> = ({ instanc
     <GlobalContainer.Provider initialState={{ instanceId: instance_id }}>
     <Container 
       bb_function="position" 
-      bb_function_class="bb-pos-fixed 
-      bb-pos-r30-b20" 
-      bb_class="bb-collabocate_container"
+      bb_function_class="bb-pos-fixed bb-pos-r30-b20" 
+      bb_class='bb-collabocate_container'
     >
       <ModalPopup />
       <FloatingActionControls />
