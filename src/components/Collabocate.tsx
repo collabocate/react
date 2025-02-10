@@ -5,6 +5,7 @@ import { FloatingActionControls } from './@section_controls/FloatingActionContro
 import { ModalPopup } from './@section_modal/ModalPopup';
 import { Container } from './@helpers/Container';
 import { Debugger } from './@helpers/Debugger';
+import { GlobalContainer } from './@hooks_state/useGlobal';
 
 export interface CollabocateProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   instance_id: string;
@@ -25,6 +26,7 @@ export const Collabocate: React.FunctionComponent<CollabocateProps> = ({ instanc
     );
   }
   return (
+    <GlobalContainer.Provider initialState={{ instanceId: instance_id }}>
     <Container 
       bb_function="position" 
       bb_function_class="bb-pos-fixed bb-pos-r30-b20" 
@@ -33,5 +35,6 @@ export const Collabocate: React.FunctionComponent<CollabocateProps> = ({ instanc
       <ModalPopup />
       <FloatingActionControls />
     </Container>
+    </GlobalContainer.Provider>
   );
 };
