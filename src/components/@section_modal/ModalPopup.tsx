@@ -1,9 +1,12 @@
 import React from 'react';
 import { Dropdown } from '../@helpers/dropdown/Dropdown';
+import { GlobalContainer } from '../@hooks_state/useGlobal';
 
 export interface ModalPopupProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {}
 
 export const ModalPopup: React.FunctionComponent<ModalPopupProps> = (props: ModalPopupProps) => {
+  const { instanceId, updateInstanceId } = GlobalContainer.useContainer();
+  console.log('ModalPopup instance_id:', instanceId);
   return (
     <>
       <div className="bb-collabocate_body">
