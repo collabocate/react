@@ -37,5 +37,8 @@
   "license": "AGPL v3.0",
   "contributors": [
     "Find list of contributors in project README: https://github.com/collabo-community/collabocate?tab=readme-ov-file#contributors"
-  ]
+  ],
+  "dependencies": {
+    "unstated-next": "^1.1.0"
+  }
 }
