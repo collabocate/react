@@ -11,7 +11,7 @@ module.exports = {
     filename: 'index.js',
     publicPath: '',
     globalObject: `typeof self !== 'undefined' ? self : this`,
-    library: '@collabo-community/collabocate',
+    library: 'react-lib-webpack',
     libraryTarget: 'umd'
   },
 
