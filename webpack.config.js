@@ -9,8 +9,9 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
+    publicPath: '',
     globalObject: `typeof self !== 'undefined' ? self : this`,
-    library: 'react-lib-webpack',
+    library: '@collabo-community/collabocate',
     libraryTarget: 'umd'
   },
 
@@ -24,6 +25,13 @@ module.exports = {
         test: /\.tsx?$/,
         use: ['ts-loader'],
         exclude: /node_modules/
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg|webp)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'static/collabocate/[hash][ext][query]'
+        }
       }
     ]
   },
