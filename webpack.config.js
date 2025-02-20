@@ -40,5 +40,9 @@ module.exports = {
     new NpmDtsPlugin({
       output: 'dist/index.d.ts'
     })
-  ]
+  ],
+
+  watchOptions: {
+    ignored: /dist/
+  }
 };
