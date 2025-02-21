@@ -1,7 +1,7 @@
 const API_BASE_URL= process.env.REACT_APP_BACKEND_API_URL;
 
 // Custom fetch API client
-export const apiClient = async <T>(url: string, options: RequestInit = {}): Promise<T> => {
+export const apiClient = async <T>(endpoint: string, options: RequestInit = {}): Promise<T> => {
   const token = typeof window !== 'undefined' ? localStorage.getItem('collabocate_authToken') : ''; // Get token from localStorage
 
   const headers: HeadersInit = {
@@ -11,7 +11,7 @@ export const apiClient = async <T>(url: string, options: RequestInit = {}): Prom
   };
 
   try {
-  const response = await fetch(`${API_BASE_URL}${url}`, {
+  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
     ...options,
     headers,
   });
@@ -24,7 +24,7 @@ export const apiClient = async <T>(url: string, options: RequestInit = {}): Prom
   // Type casting to ensure that response data is in the expected format
   return (await response.json()) as T;
 } catch (error) {
-    console.log(`API Error [${API_BASE_URL}${url}]:`, error);
+    console.log(`API Error [${API_BASE_URL}${endpoint}]:`, error);
     throw error;
   }
 
