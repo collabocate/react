@@ -41,7 +41,6 @@ module.exports = {
     new NpmDtsPlugin({
       output: 'dist/index.d.ts'
     }),
-
      new Dotenv(),
   ],
 
