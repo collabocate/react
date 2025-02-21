@@ -1,5 +1,6 @@
 const path = require('path');
 const NpmDtsPlugin = require('npm-dts-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: './src/index.ts',
@@ -39,7 +40,9 @@ module.exports = {
   plugins: [
     new NpmDtsPlugin({
       output: 'dist/index.d.ts'
-    })
+    }),
+
+     new Dotenv(),
   ],
 
   watchOptions: {
