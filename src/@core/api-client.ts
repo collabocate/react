@@ -1,4 +1,4 @@
-const API_BASE_URL= process.env.REACT_APP_API_BACKEND_BASE_URL;
+const API_BASE_URL= process.env.REACT_APP_BACKEND_API_URL;
 
 // Custom fetch API client
 export const apiClient = async <T>(url: string, options: RequestInit = {}): Promise<T> => {
