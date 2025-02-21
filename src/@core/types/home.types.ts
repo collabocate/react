@@ -1,4 +1,4 @@
-export interface HomeData {
+export interface ApiHomeResponse {
   name: string;
   description: string;
   built_at: string;
