@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Dropdown } from '../@helpers/dropdown/Dropdown';
 import { GlobalContainer } from '../@hooks_state/useGlobal';
 
@@ -7,6 +7,8 @@ export interface ModalPopupProps extends React.DetailedHTMLProps<React.ButtonHTM
 export const ModalPopup: React.FunctionComponent<ModalPopupProps> = (props: ModalPopupProps) => {
   const { instanceId, updateInstanceId } = GlobalContainer.useContainer();
   console.log('ModalPopup instance_id:', instanceId);
+  const [issueBody, setIssueBody] = useState<string>('');
+  
   return (
     <>
       <div className="bb-collabocate_body">
@@ -25,7 +27,7 @@ export const ModalPopup: React.FunctionComponent<ModalPopupProps> = (props: Moda
           <div>
             <label className="bb-collabocate_label" htmlFor="issueTemplates">Choose Report Type</label>
             <br />
-            <Dropdown />
+            <Dropdown setIssueBody={setIssueBody}/>
           </div>
           <div>
             <label className="bb-collabocate_label" htmlFor="issueTitle">Issue Title</label>
@@ -35,7 +37,7 @@ export const ModalPopup: React.FunctionComponent<ModalPopupProps> = (props: Moda
           <div>
             <label className="bb-collabocate_label" htmlFor="issueBody">Issue Body</label>
             <br />
-            <textarea className="bb-content-group__collabocate_form-inner bb-collabocate_input bb-collabocate_textarea" id="issueBody"></textarea>
+            <textarea className="bb-content-group__collabocate_form-inner bb-collabocate_input bb-collabocate_textarea" id="issueBody" value={issueBody}></textarea>
           </div>
           <button className="bb-content-group__collabocate_form-inner bb-collabocate_submit-form-button" id="submitIssueButton">Submit Issue Ticket</button>
           <div id="displayToastrMessage"></div>
