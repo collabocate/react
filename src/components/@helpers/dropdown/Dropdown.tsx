@@ -1,14 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container } from '../Container';
 import { api_dummy_response } from './dummy_api';
 import { useDropdown } from './useDropdown';
+import { getApiIssueTemplates } from '../../../@core/templates';
+import { IssueTemplate } from '../../../@core/types/issueTemplate';
 
 // TODO: Decide later - should this file/functionality be moved to the external library?
 
-export interface DropdownProps {}
+export interface DropdownProps {setIssueBody: (body: string) => void;}
 
-export const Dropdown: React.FunctionComponent<DropdownProps> = ({}) => {
+export const Dropdown: React.FunctionComponent<DropdownProps> = ({ setIssueBody }) => {
   const {isOpen, setIsOpen, dropdownContainerRef } = useDropdown();
+  const [templates, setTemplates] = useState<IssueTemplate[]>([]);
+
+  useEffect(() => {
+    getApiIssueTemplates().then(setTemplates);
+  }, []);
+
+  const fetchTemplateContent = async (url: string) => {
+    try {
+      const response = await fetch(url);
+      const content = await response.text();
+      setIssueBody(content);
+    } catch (error) {
+      console.log('Error fetching template content:', error);
+    }
+  };
+
 
   return (
     <>
@@ -31,17 +49,17 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = ({}) => {
             bb_function_class={'bb-pos-absolute'}
             bb_class={'bb-toggle_option-container'}
           >
-            {api_dummy_response.map((option, index) => {
+            {templates.map((option, index) => {
               return (
                 <>
                   <button 
-                    key={option.id}
+                    key={option.name}
                     className="bb-content-group_toggle" type="button"
-                    onClick={() => console.log('Change the text of bb-toggle button above, and populate the issue body with selected issue template content.')}
+                    onClick={() => fetchTemplateContent(option.download_url)}
                   >
-                    {option.label}
+                    {option.name.replace('.md', '').split('-').join(' ').replace(/^./, char => char.toUpperCase())}
                   </button>
-                  {index !== api_dummy_response.length - 1 && <hr className="bb-toggle_hr" />}
+                  {index !== templates.length - 1 && <hr className="bb-toggle_hr" />}
                 </>
               );
             })}
