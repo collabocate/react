@@ -7,9 +7,11 @@ import { IssueTemplate } from '../../../@core/types/issueTemplate';
 
 // TODO: Decide later - should this file/functionality be moved to the external library?
 
-export interface DropdownProps {setIssueBody: (body: string) => void;}
+export interface DropdownProps {setIssueBody: (body: string) => void; setIssueTitle: (body: string) => void;
 
-export const Dropdown: React.FunctionComponent<DropdownProps> = ({ setIssueBody }) => {
+}
+
+export const Dropdown: React.FunctionComponent<DropdownProps> = ({ setIssueBody,setIssueTitle }) => {
   const {isOpen, setIsOpen, dropdownContainerRef } = useDropdown();
   const [templates, setTemplates] = useState<IssueTemplate[]>([]);
 
@@ -19,6 +21,7 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = ({ setIssueBody 
 
   const fetchTemplateContent = async (url: string) => {
     try {
+      setIssueTitle('');
       const response = await fetch(url);
       const content = await response.text();
       setIssueBody(content);
