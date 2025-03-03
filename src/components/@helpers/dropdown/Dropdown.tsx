@@ -25,6 +25,7 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = ({ setIssueBody,
       const response = await fetch(url);
       const content = await response.text();
       setIssueBody(content);
+      setIsOpen(false)
     } catch (error) {
       console.log('Error fetching template content:', error);
     }
