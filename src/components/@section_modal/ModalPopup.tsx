@@ -8,6 +8,7 @@ export const ModalPopup: React.FunctionComponent<ModalPopupProps> = (props: Moda
   const { instanceId, updateInstanceId } = GlobalContainer.useContainer();
   console.log('ModalPopup instance_id:', instanceId);
   const [issueBody, setIssueBody] = useState<string>('');
+  const [issueTitle, setIssueTitle] = useState<string>('');
   
   return (
     <>
@@ -27,12 +28,12 @@ export const ModalPopup: React.FunctionComponent<ModalPopupProps> = (props: Moda
           <div>
             <label className="bb-collabocate_label" htmlFor="issueTemplates">Choose Report Type</label>
             <br />
-            <Dropdown setIssueBody={setIssueBody}/>
+            <Dropdown setIssueBody={setIssueBody} setIssueTitle={setIssueTitle}/>
           </div>
           <div>
-            <label className="bb-collabocate_label" htmlFor="issueTitle">Issue Title</label>
+            <label className="bb-collabocate_label" htmlFor="issueTitle" >Issue Title</label>
             <br />
-            <input className="bb-content-group__collabocate_form-inner bb-collabocate_input" type="text" id="issueTitle" />
+            <input className="bb-content-group__collabocate_form-inner bb-collabocate_input" type="text" id="issueTitle" onChange={(e) => setIssueTitle(e.target.value)} value={issueTitle} />
           </div>
           <div>
             <label className="bb-collabocate_label" htmlFor="issueBody">Issue Body</label>
