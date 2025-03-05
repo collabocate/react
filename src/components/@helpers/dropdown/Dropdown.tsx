@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container } from '../Container';
 import { api_dummy_response } from './dummy_api';
 import { useDropdown } from './useDropdown';
-import { getApiIssueTemplates } from '../../../@core/templates';
-import { IssueTemplate } from '../../../@core/types/issueTemplate';
+import { GitHubIssueTemplateContainer } from '../../@hooks_state/useTemplate';
 
 // TODO: Decide later - should this file/functionality be moved to the external library?
 
@@ -12,25 +11,9 @@ export interface DropdownProps {
   setIssueTitle: (body: string) => void;
 }
 
-export const Dropdown: React.FunctionComponent<DropdownProps> = ({ setIssueBody,setIssueTitle }) => {
+export const Dropdown: React.FunctionComponent<DropdownProps> = () => {
   const {isOpen, setIsOpen, dropdownContainerRef } = useDropdown();
-  const [templates, setTemplates] = useState<IssueTemplate[]>([]);
-
-  useEffect(() => {
-    getApiIssueTemplates().then(setTemplates);
-  }, []);
-
-  const fetchTemplateContent = async (url: string) => {
-    try {
-      setIssueTitle('');
-      const response = await fetch(url);
-      const content = await response.text();
-      setIssueBody(content);
-      setIsOpen(false)
-    } catch (error) {
-      console.log('Error fetching template content:', error);
-    }
-  };
+  const {templates,fetchTemplateContent } = GitHubIssueTemplateContainer.useContainer();
 
   return (
     <>
