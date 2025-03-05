@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import { createContainer } from 'unstated-next';
-import { IssueTemplate } from "../../@core/types/issueTemplate";
-import { getApiIssueTemplates } from "../../@core/templates";
+import { IssueTemplate } from '../../@core/types/issueTemplate';
+import { getApiIssueTemplates } from '../../@core/templates';
   
 function useTemplateState() {
 const [issueBody, setIssueBody] = useState<string>('');

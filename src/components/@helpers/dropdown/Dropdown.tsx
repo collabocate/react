@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Container } from '../Container';
 import { api_dummy_response } from './dummy_api';
 import { useDropdown } from './useDropdown';
