@@ -8,7 +8,7 @@ export interface ModalPopupProps extends React.DetailedHTMLProps<React.ButtonHTM
 export const ModalPopup: React.FunctionComponent<ModalPopupProps> = (props: ModalPopupProps) => {
   const { instanceId, updateInstanceId } = GlobalContainer.useContainer();
   console.log('ModalPopup instance_id:', instanceId);
-   const { issueBody, setIssueBody, issueTitle, setIssueTitle } = GitHubIssueTemplateContainer.useContainer();
+   const { issueBody, issueTitle, setIssueTitle } = GitHubIssueTemplateContainer.useContainer();
   
   return (
     <>
@@ -28,7 +28,7 @@ export const ModalPopup: React.FunctionComponent<ModalPopupProps> = (props: Moda
           <div>
             <label className="bb-collabocate_label" htmlFor="issueTemplates">Choose Report Type</label>
             <br />
-            <Dropdown setIssueBody={setIssueBody} setIssueTitle={setIssueTitle}/>
+            <Dropdown/>
           </div>
           <div>
             <label className="bb-collabocate_label" htmlFor="issueTitle" >Issue Title</label>
