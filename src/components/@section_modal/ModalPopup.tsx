@@ -8,8 +8,7 @@ export interface ModalPopupProps extends React.DetailedHTMLProps<React.ButtonHTM
 export const ModalPopup: React.FunctionComponent<ModalPopupProps> = (props: ModalPopupProps) => {
   const { instanceId, updateInstanceId } = GlobalContainer.useContainer();
   console.log('ModalPopup instance_id:', instanceId);
-   const { issueBody, setIssueBody, issueTitle, setIssueTitle } = 
-    GitHubIssueTemplateContainer.useContainer();
+   const { issueBody, setIssueBody, issueTitle, setIssueTitle } = GitHubIssueTemplateContainer.useContainer();
   
   return (
     <>

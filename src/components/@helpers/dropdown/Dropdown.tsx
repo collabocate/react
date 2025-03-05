@@ -6,10 +6,7 @@ import { GitHubIssueTemplateContainer } from '../../@hooks_state/useTemplate';
 
 // TODO: Decide later - should this file/functionality be moved to the external library?
 
-export interface DropdownProps {
-  setIssueBody: (body: string) => void;
-  setIssueTitle: (body: string) => void;
-}
+export interface DropdownProps {}
 
 export const Dropdown: React.FunctionComponent<DropdownProps> = () => {
   const {isOpen, setIsOpen, dropdownContainerRef } = useDropdown();
