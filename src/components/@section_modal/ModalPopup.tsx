@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { Dropdown } from '../@helpers/dropdown/Dropdown';
 import { GlobalContainer } from '../@hooks_state/useGlobal';
+import { GitHubIssueTemplateContainer } from '../@hooks_state/useTemplate';
 
 export interface ModalPopupProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {}
 
 export const ModalPopup: React.FunctionComponent<ModalPopupProps> = (props: ModalPopupProps) => {
   const { instanceId, updateInstanceId } = GlobalContainer.useContainer();
   console.log('ModalPopup instance_id:', instanceId);
-  const [issueBody, setIssueBody] = useState<string>('');
-  const [issueTitle, setIssueTitle] = useState<string>('');
+   const { issueBody, setIssueBody, issueTitle, setIssueTitle } = 
+    GitHubIssueTemplateContainer.useContainer();
   
   return (
     <>
