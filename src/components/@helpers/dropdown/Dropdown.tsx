@@ -42,7 +42,7 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = () => {
                   <button 
                     key={option.name}
                     className="bb-content-group_toggle" type="button"
-                    onClick={() => fetchTemplateContent(option.download_url)}
+                    onClick={() => fetchTemplateContent(option.download_url,() => setIsOpen(false))}
                   >
                     {option.name.replace('.md', '').split('-').join(' ').replace(/^./, char => char.toUpperCase())}
                   </button>
