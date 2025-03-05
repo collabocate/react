@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Dropdown } from '../@helpers/dropdown/Dropdown';
 import { GlobalContainer } from '../@hooks_state/useGlobal';
 import { GitHubIssueTemplateContainer } from '../@hooks_state/useTemplate';
