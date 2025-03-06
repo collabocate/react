@@ -8,7 +8,7 @@ import { GitHubIssueTemplateContainer } from '../../@hooks_state/useTemplate';
 
 export interface DropdownProps {}
 
-export const Dropdown: React.FunctionComponent<DropdownProps> = () => {
+export const Dropdown: React.FunctionComponent<DropdownProps> = ({}) => {
   const {isOpen, setIsOpen, dropdownContainerRef } = useDropdown();
   const {templates,fetchTemplateContent } = GitHubIssueTemplateContainer.useContainer();
 
