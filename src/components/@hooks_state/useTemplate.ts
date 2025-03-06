@@ -12,13 +12,12 @@ useEffect(() => {
     getApiIssueTemplates().then(setTemplates);
   }, []);
 
-const fetchTemplateContent = async (url: string, closeDropdown: () => void) => {
+const fetchTemplateContent = async (url: string) => {
     try {
       setIssueTitle('');
       const response = await fetch(url);
       const content = await response.text();
       setIssueBody(content);
-      closeDropdown()
     } catch (error) {
       console.log('Error fetching template content:', error);
     }
