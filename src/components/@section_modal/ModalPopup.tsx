@@ -28,12 +28,12 @@ export const ModalPopup: React.FunctionComponent<ModalPopupProps> = (props: Moda
           <div>
             <label className="bb-collabocate_label" htmlFor="issueTemplates">Choose Report Type</label>
             <br />
-            <Dropdown/>
+            <Dropdown />
           </div>
           <div>
             <label className="bb-collabocate_label" htmlFor="issueTitle">Issue Title</label>
             <br />
-            <input className="bb-content-group__collabocate_form-inner bb-collabocate_input" type="text" id="issueTitle" onChange={(e) => setIssueTitle(e.target.value)} value={issueTitle} />
+            <input className="bb-content-group__collabocate_form-inner bb-collabocate_input" type="text" id="issueTitle" onChange={(e) => setIssueTitle(e.target.value)} value={issueTitle}/>
           </div>
           <div>
             <label className="bb-collabocate_label" htmlFor="issueBody">Issue Body</label>
