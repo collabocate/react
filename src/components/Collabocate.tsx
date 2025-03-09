@@ -39,7 +39,6 @@ export const Collabocate: React.FunctionComponent<CollabocateProps> = ({ instanc
       <GitHubIssueTemplateContainer.Provider>
       <ModalPopup />
       </GitHubIssueTemplateContainer.Provider>
-
       <FloatingActionControls />
     </Container>
     </GlobalContainer.Provider>

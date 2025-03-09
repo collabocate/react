@@ -23,7 +23,6 @@ const fetchTemplateContent = async (url: string) => {
     }
   };
 
-  
     return {
       issueBody,
       setIssueBody,
