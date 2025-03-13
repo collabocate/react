@@ -16,7 +16,11 @@ const fetchTemplateContent = async (url: string) => {
     try {
       setIssueTitle('');
       const response = await fetch(url);
-      const content = await response.text();
+      let content = await response.text();
+      const findIndex = content.indexOf('<!-- Issue template by Collabo Community -->');
+      if (findIndex !== -1) {
+        content = content.slice(findIndex + 46).trim();
+      }
       setIssueBody(content);
     } catch (error) {
       console.log('Error fetching template content:', error);
