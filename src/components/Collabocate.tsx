@@ -17,7 +17,7 @@ getApiHome();
 
 export const Collabocate: React.FunctionComponent<CollabocateProps> = ({ instance_id }) => {
   console.log('instance_id: ', instance_id);
-  if (!instance_id.length) {
+  if (!instance_id || !instance_id.length) {
     return (
       <>
         <Debugger 
