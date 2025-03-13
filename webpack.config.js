@@ -11,7 +11,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
     globalObject: `typeof self !== 'undefined' ? self : this`,
-    library: 'react-lib-webpack',
+    library: '@collabocate/react',
     libraryTarget: 'umd'
   },
 
