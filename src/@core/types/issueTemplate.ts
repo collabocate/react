@@ -1,7 +1,7 @@
 export interface IssueTemplate {
-  name: string;
-  path: string;
-  download_url: string;
+  title: string;
+  metadata: string;
+  content: string;
 }
 
 export interface IssueTemplateResponse {
