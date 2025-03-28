@@ -12,8 +12,8 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = ({}) => {
   const {isOpen, setIsOpen, dropdownContainerRef } = useDropdown();
   const {templates,fetchTemplateContent } = GitHubIssueTemplateContainer.useContainer();
 
-  const templateContentHandler = (download_url: string) => {
-        fetchTemplateContent(download_url);
+  const templateContentHandler = (content: string) => {
+        fetchTemplateContent(content);
         setIsOpen(false);
   }
 
@@ -42,11 +42,11 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = ({}) => {
               return (
                 <>
                   <button 
-                    key={option.name}
+                    key={option.title}
                     className="bb-content-group_toggle" type="button"
-                    onClick={() =>templateContentHandler(option.download_url)}
+                    onClick={() =>templateContentHandler(option.content)}
                   >
-                    {option.name.replace('.md', '').split('-').join(' ').replace(/^./, char => char.toUpperCase())}
+                    {option.title}
                   </button>
                   {index !== templates.length - 1 && <hr className="bb-toggle_hr" />}
                 </>
