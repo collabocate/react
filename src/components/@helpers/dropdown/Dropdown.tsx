@@ -42,7 +42,7 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = ({}) => {
               return (
                 <>
                   <button 
-                    key={option.title}
+                    key={index}
                     className="bb-content-group_toggle" type="button"
                     onClick={() =>templateContentHandler(option.content)}
                   >
