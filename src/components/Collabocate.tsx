@@ -8,6 +8,7 @@ import { Debugger } from './@helpers/Debugger';
 import { GlobalContainer } from './@hooks_state/useGlobal';
 import { getApiHome } from '../@core/home';
 import { GitHubIssueTemplateContainer } from './@hooks_state/useTemplate';
+import { SubmitIssueContainer } from './@hooks_state/useSubmitIssue';
 
 export interface CollabocateProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   instance_id: string;
@@ -37,7 +38,9 @@ export const Collabocate: React.FunctionComponent<CollabocateProps> = ({ instanc
       bb_class='bb-collabocate_container'
     >
       <GitHubIssueTemplateContainer.Provider>
-      <ModalPopup />
+        <SubmitIssueContainer.Provider>
+          <ModalPopup />
+        </SubmitIssueContainer.Provider>
       </GitHubIssueTemplateContainer.Provider>
       <FloatingActionControls />
     </Container>
