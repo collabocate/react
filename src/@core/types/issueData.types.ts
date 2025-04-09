@@ -1,4 +1,4 @@
-export interface IssueData {
+export interface Issue_POST_RequestBody {
   title: string;
   body: string;
 }
