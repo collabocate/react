@@ -2,14 +2,16 @@ import React from 'react';
 import { Dropdown } from '../@helpers/dropdown/Dropdown';
 import { GlobalContainer } from '../@hooks_state/useGlobal';
 import { GitHubIssueTemplateContainer } from '../@hooks_state/useTemplate';
+import { SubmitIssueContainer } from '../@hooks_state/useSubmitIssue';
 
 export interface ModalPopupProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {}
 
 export const ModalPopup: React.FunctionComponent<ModalPopupProps> = (props: ModalPopupProps) => {
   const { instanceId, updateInstanceId } = GlobalContainer.useContainer();
   console.log('ModalPopup instance_id:', instanceId);
-   const { issueBody, issueTitle, setIssueTitle } = GitHubIssueTemplateContainer.useContainer();
-  
+   const { issueBody, setIssueBody, issueTitle, setIssueTitle } = GitHubIssueTemplateContainer.useContainer();
+  const { toastrMessage, handleSubmit } = SubmitIssueContainer.useContainer();
+
   return (
     <>
       <div className="bb-collabocate_body">
@@ -24,7 +26,7 @@ export const ModalPopup: React.FunctionComponent<ModalPopupProps> = (props: Moda
             </div>
             <p className="bb-content-group__collabocate_plugin">Collabocate | GitHub Sync</p>
         </header>
-        <form className="bb-content-group__collabocate_plugin bb-collabocate_form" id="submitIssueForm">
+        <form className="bb-content-group__collabocate_plugin bb-collabocate_form" id="submitIssueForm" onSubmit={handleSubmit} >
           <div>
             <label className="bb-collabocate_label" htmlFor="issueTemplates">Choose Report Type</label>
             <br />
@@ -38,10 +40,16 @@ export const ModalPopup: React.FunctionComponent<ModalPopupProps> = (props: Moda
           <div>
             <label className="bb-collabocate_label" htmlFor="issueBody">Issue Body</label>
             <br />
-            <textarea className="bb-content-group__collabocate_form-inner bb-collabocate_input bb-collabocate_textarea" id="issueBody" value={issueBody}></textarea>
+            <textarea className="bb-content-group__collabocate_form-inner bb-collabocate_input bb-collabocate_textarea" id="issueBody" onChange={(e) =>setIssueBody(e.target.value)} value={issueBody}></textarea>
           </div>
           <button className="bb-content-group__collabocate_form-inner bb-collabocate_submit-form-button" id="submitIssueButton">Submit Issue Ticket</button>
-          <div id="displayToastrMessage"></div>
+           {toastrMessage && (
+            <div
+              id="displayToastrMessage"
+              dangerouslySetInnerHTML={{ __html: toastrMessage }}
+            />
+          )}
+          {/* <div id="displayToastrMessage"></div> */}
         </form>
       </div>
     </>
