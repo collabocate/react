@@ -1,5 +1,5 @@
-import { apiClient } from "./api-client";
-import { Issue_POST_RequestBody, IssueResponse } from "./types/issueData.types";
+import { apiClient } from './api-client';
+import { Issue_POST_RequestBody, IssueResponse } from './types/issueData.types';
 
 export const submitIssue = async (issueData: Issue_POST_RequestBody): Promise<IssueResponse> => {
     const response = await apiClient<IssueResponse>('/external/github/issues', {
