@@ -3,7 +3,7 @@ export interface Issue_POST_RequestBody {
   body: string;
 }
 
-export interface IssueData {
+export interface IssueDetails {
   repository_url: string;
   html_url:string;
   number: number;
@@ -20,5 +20,5 @@ export interface IssueData {
 
 export interface IssueResponse {
   message: string;
-  issue: IssueData;
+  issue: IssueDetails;
 }
