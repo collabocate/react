@@ -43,13 +43,19 @@ export const ModalPopup: React.FunctionComponent<ModalPopupProps> = (props: Moda
             <textarea className="bb-content-group__collabocate_form-inner bb-collabocate_input bb-collabocate_textarea" id="issueBody" onChange={(e) =>setIssueBody(e.target.value)} value={issueBody}></textarea>
           </div>
           <button className="bb-content-group__collabocate_form-inner bb-collabocate_submit-form-button" id="submitIssueButton">Submit Issue Ticket</button>
-           {toastrMessage && (
-            <div
-              id="displayToastrMessage"
-              dangerouslySetInnerHTML={{ __html: toastrMessage }}
-            />
+          {toastrMessage && (
+            <div id="displayToastrMessage">
+              {toastrMessage.message}{" "}
+              {toastrMessage.issueURL && toastrMessage.issueNumber && (
+                <>
+                  Follow your issue ticket's progress here:{" "}
+                  <a href={toastrMessage.issueURL} target="_blank" rel="noopener noreferrer">
+                    Issue ticket #{toastrMessage.issueNumber}
+                  </a>
+                </>
+              )}
+            </div>
           )}
-          {/* <div id="displayToastrMessage"></div> */}
         </form>
       </div>
     </>
