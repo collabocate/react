@@ -3,11 +3,22 @@ export interface Issue_POST_RequestBody {
   body: string;
 }
 
+export interface IssueData {
+  repository_url: string;
+  html_url:string;
+  number: number;
+  id: number;
+  user: object;
+  assignee: any;
+  assignees: any[];
+  created_at: string;
+  updated_at: string;
+  closed_at: any,
+  author_association: string;
+  body:string;
+}
+
 export interface IssueResponse {
   message: string;
-  issue:{
-    html_url:string;
-    number: number;
-    body:string;
-  }
+  issue: IssueData;
 }
