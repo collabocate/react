@@ -5,7 +5,8 @@ import { GitHubIssueTemplateContainer } from './useTemplate';
 
 function useSubmitIssueState (){
   const { issueBody, setIssueBody, issueTitle, setIssueTitle } = GitHubIssueTemplateContainer.useContainer();
-  const [toastrMessage, setToastrMessage] = useState<{message: string; issueURL?: string; issueNumber?: number;} | null>(null);
+  const [toastrSuccessMessage, setToastrSuccessMessage] = useState<{message: string} | null>(null);
+  const [followIssueMessage, setFollowIssueMessage] = useState<{issueURL?: string; issueNumber?: number;} | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -13,25 +14,27 @@ function useSubmitIssueState (){
     const body = issueBody.trim();
     
     if (!title || !body) {
-      setToastrMessage({message:'Issue Title and Body cannot be empty.'});
+      setToastrSuccessMessage({message:'Issue Title and Body cannot be empty.'});
       return;
     }
     
       const data = { title, body };
 
       const response = await submitIssue(data);
-      console.log('Issue submitted:', response);
       setIssueTitle('');
       setIssueBody('');
-      setToastrMessage({
+      setToastrSuccessMessage({
         message: response.message,
-        issueURL: response.issue.html_url,
-        issueNumber: response.issue.number,
       });
+      setFollowIssueMessage({ 
+        issueURL: response.issue.url,
+        issueNumber: response.issue.number,
+      })
   };
 
   return {
-    toastrMessage,
+    toastrSuccessMessage,
+    followIssueMessage,
     handleSubmit,
   };
 }
