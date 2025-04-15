@@ -10,7 +10,7 @@ export const ModalPopup: React.FunctionComponent<ModalPopupProps> = (props: Moda
   const { instanceId, updateInstanceId } = GlobalContainer.useContainer();
   console.log('ModalPopup instance_id:', instanceId);
   const { issueBody, setIssueBody, issueTitle, setIssueTitle } = GitHubIssueTemplateContainer.useContainer();
-  const { toastrMessage, handleSubmit } = SubmitIssueContainer.useContainer();
+  const { toastrSuccessMessage, followIssueMessage, handleSubmit } = SubmitIssueContainer.useContainer();
 
   return (
     <>
@@ -43,14 +43,18 @@ export const ModalPopup: React.FunctionComponent<ModalPopupProps> = (props: Moda
             <textarea className="bb-content-group__collabocate_form-inner bb-collabocate_input bb-collabocate_textarea" id="issueBody" onChange={(e) =>setIssueBody(e.target.value)} value={issueBody}></textarea>
           </div>
           <button className="bb-content-group__collabocate_form-inner bb-collabocate_submit-form-button" id="submitIssueButton">Submit Issue Ticket</button>
-          {toastrMessage && (
+          {toastrSuccessMessage && (
             <div id="displayToastrMessage">
-              {toastrMessage.message}{" "}
-              {toastrMessage.issueURL && toastrMessage.issueNumber && (
+              {toastrSuccessMessage.message}
+            </div>
+          )}
+          {followIssueMessage && (
+            <div>
+               {followIssueMessage.issueURL && followIssueMessage.issueNumber && (
                 <>
                   Follow your issue ticket's progress here:{" "}
-                  <a href={toastrMessage.issueURL} target="_blank" rel="noopener noreferrer">
-                    Issue ticket #{toastrMessage.issueNumber}
+                  <a href={followIssueMessage.issueURL} target="_blank" rel="noopener noreferrer">
+                    Issue ticket #{followIssueMessage.issueNumber}
                   </a>
                 </>
               )}
