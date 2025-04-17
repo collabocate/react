@@ -6,7 +6,7 @@ export interface Issue_POST_RequestBody {
 export interface IssueResponse {
   message: string;
   issue: {
-    url:string;
+    url: string;
     number: number;
 };
 }
