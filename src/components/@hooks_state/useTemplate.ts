@@ -7,14 +7,16 @@ function useTemplateState() {
 const [issueBody, setIssueBody] = useState<string>('');
 const [issueTitle, setIssueTitle] = useState<string>('');
 const [templates, setTemplates] = useState<IssueTemplate[]>([]);
+const [buttonTitle, setButtonTitle] = useState<string>('-- Select issue template --');
 
 useEffect(() => {
     getApiIssueTemplates().then(setTemplates);
   }, []);
 
-const fetchTemplateContent = (content: string) => {
+const fetchTemplateContent = (content: string, title:string) => {
       setIssueTitle('');
       setIssueBody(content);
+      setButtonTitle(title)
   };
 
     return {
@@ -23,7 +25,8 @@ const fetchTemplateContent = (content: string) => {
       issueTitle,
       setIssueTitle,
       templates,
-      fetchTemplateContent
+      fetchTemplateContent,
+      buttonTitle
     };
   }
   export const GitHubIssueTemplateContainer = createContainer(useTemplateState);
