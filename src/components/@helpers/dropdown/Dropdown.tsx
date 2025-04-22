@@ -10,7 +10,7 @@ export interface DropdownProps {}
 
 export const Dropdown: React.FunctionComponent<DropdownProps> = ({}) => {
   const {isOpen, setIsOpen, dropdownContainerRef } = useDropdown();
-  const {buttonTitle,templates,fetchTemplateContent } = GitHubIssueTemplateContainer.useContainer();
+  const {buttonTitle, isHovering, setIsHovering, templates, fetchTemplateContent } = GitHubIssueTemplateContainer.useContainer();
 
   const templateContentHandler = (content: string, title: string) => {
         fetchTemplateContent(content, title);
@@ -29,8 +29,10 @@ export const Dropdown: React.FunctionComponent<DropdownProps> = ({}) => {
           className="bb-content-group_toggle bb-toggle"
           type="button"
           onClick={() => setIsOpen(!isOpen)}
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}
         >
-          {buttonTitle}
+          {isHovering ? '-- Select issue template --' : buttonTitle}
         </button>
         {isOpen && (
           <Container 
