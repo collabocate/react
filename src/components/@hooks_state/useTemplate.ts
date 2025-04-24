@@ -25,6 +25,7 @@ const fetchTemplateContent = (content: string, title:string) => {
       issueTitle,
       setIssueTitle,
       buttonTitle,
+      setButtonTitle,
       templates,
       fetchTemplateContent
     };

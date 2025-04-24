@@ -4,12 +4,13 @@ import { submitIssue } from '../../@core/submitIssue';
 import { GitHubIssueTemplateContainer } from './useTemplate';
 
 function useSubmitIssueState (){
-  const { issueBody, setIssueBody, issueTitle, setIssueTitle } = GitHubIssueTemplateContainer.useContainer();
+  const { issueBody, setIssueBody, issueTitle, setIssueTitle, setButtonTitle} = GitHubIssueTemplateContainer.useContainer();
   const [toastrMessage, setToastrMessage] = useState<{message: string; issueURL?: string; 
     issueNumber?: number;} | null>(null);
     
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setButtonTitle('-- Select issue template --');
     const title = issueTitle.trim();
     const body = issueBody.trim();
     
