@@ -8,7 +8,6 @@ const [issueBody, setIssueBody] = useState<string>('');
 const [issueTitle, setIssueTitle] = useState<string>('');
 const [templates, setTemplates] = useState<IssueTemplate[]>([]);
 const [buttonTitle, setButtonTitle] = useState<string>('-- Select issue template --');
-const [isHovering, setIsHovering] = useState<boolean>(false);
 
 useEffect(() => {
     getApiIssueTemplates().then(setTemplates);
@@ -27,8 +26,6 @@ const fetchTemplateContent = (content: string, title:string) => {
       setIssueTitle,
       buttonTitle,
       templates,
-      isHovering,
-      setIsHovering,
       fetchTemplateContent
     };
   }
