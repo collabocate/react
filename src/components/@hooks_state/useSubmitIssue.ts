@@ -10,7 +10,6 @@ function useSubmitIssueState (){
     
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setButtonTitle('-- Select issue template --');
     const title = issueTitle.trim();
     const body = issueBody.trim();
     
@@ -29,6 +28,7 @@ function useSubmitIssueState (){
         issueURL: response.issue.url,
         issueNumber: response.issue.number,
       });
+      setButtonTitle('-- Select issue template --');
   };
 
   return {
