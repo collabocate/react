@@ -8,7 +8,7 @@ function useTemplateState() {
 const [issueBody, setIssueBody] = useState<string>('');
 const [issueTitle, setIssueTitle] = useState<string>('');
 const [templates, setTemplates] = useState<IssueTemplate[]>([]);
-const [buttonTitle, setButtonTitle] = useState<string>(dropdownButtonText);
+const [dropdownButtonTitle, setDropdownButtonTitle] = useState<string>(dropdownButtonText);
 
 useEffect(() => {
     getApiIssueTemplates().then(setTemplates);
@@ -17,7 +17,7 @@ useEffect(() => {
 const fetchTemplateContent = (content: string, title:string) => {
       setIssueTitle('');
       setIssueBody(content);
-      setButtonTitle(title)
+      setDropdownButtonTitle(title)
   };
 
     return {
@@ -25,8 +25,8 @@ const fetchTemplateContent = (content: string, title:string) => {
       setIssueBody,
       issueTitle,
       setIssueTitle,
-      buttonTitle,
-      setButtonTitle,
+      dropdownButtonTitle,
+      setDropdownButtonTitle,
       templates,
       fetchTemplateContent,
       dropdownButtonText

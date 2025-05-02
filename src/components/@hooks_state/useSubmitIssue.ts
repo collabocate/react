@@ -4,7 +4,7 @@ import { submitIssue } from '../../@core/submitIssue';
 import { GitHubIssueTemplateContainer } from './useTemplate';
 
 function useSubmitIssueState (){
-  const { issueBody, setIssueBody, issueTitle, setIssueTitle, setButtonTitle, dropdownButtonText} = GitHubIssueTemplateContainer.useContainer();
+  const { issueBody, setIssueBody, issueTitle, setIssueTitle, setDropdownButtonTitle, dropdownButtonText} = GitHubIssueTemplateContainer.useContainer();
   const [toastrMessage, setToastrMessage] = useState<{message: string; issueURL?: string; 
     issueNumber?: number;} | null>(null);
     
@@ -28,7 +28,7 @@ function useSubmitIssueState (){
         issueURL: response.issue.url,
         issueNumber: response.issue.number,
       });
-      setButtonTitle(dropdownButtonText);
+      setDropdownButtonTitle(dropdownButtonText);
   };
 
   return {
