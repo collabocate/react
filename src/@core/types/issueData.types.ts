@@ -4,8 +4,9 @@ export interface Issue_POST_RequestBody {
 }
 
 export interface IssueResponse {
+  success: boolean;
   message: string;
-  issue: {
+  data: {
     url: string;
     number: number;
 };
