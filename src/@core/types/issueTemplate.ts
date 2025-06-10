@@ -5,5 +5,8 @@ export interface IssueTemplate {
 }
 
 export interface IssueTemplateResponse {
-  templates: IssueTemplate[];
+  success: boolean;
+  message: string;
+  count: number;
+  data: IssueTemplate[];
 }
