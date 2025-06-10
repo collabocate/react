@@ -25,8 +25,8 @@ function useSubmitIssueState (){
       setIssueBody('');
       setToastrMessage({
         message: response.message,
-        issueURL: response.issue.url,
-        issueNumber: response.issue.number,
+        issueURL: response.data.url,
+        issueNumber: response.data.number,
       });
       setDropdownButtonTitle(dropdownButtonText);
   };
