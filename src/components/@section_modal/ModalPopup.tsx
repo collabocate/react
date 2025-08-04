@@ -10,7 +10,7 @@ export const ModalPopup: React.FunctionComponent<ModalPopupProps> = (props: Moda
   const { instanceId, updateInstanceId } = GlobalContainer.useContainer();
   console.log('ModalPopup instance_id:', instanceId);
   const { issueBody, setIssueBody, issueTitle, setIssueTitle } = GitHubIssueTemplateContainer.useContainer();
-  const { toastrMessage, handleSubmit } = SubmitIssueContainer.useContainer();
+  const { toastrMessage, handleSubmit, showButton, handleButtonClick, handleSubmitAnonymous, loginWithGithub, showGithubLoginButton } = SubmitIssueContainer.useContainer();
 
   return (
     <>
@@ -26,7 +26,7 @@ export const ModalPopup: React.FunctionComponent<ModalPopupProps> = (props: Moda
             </div>
             <p className="bb-content-group__collabocate_plugin">Collabocate | GitHub Sync</p>
         </header>
-        <form className="bb-content-group__collabocate_plugin bb-collabocate_form" id="submitIssueForm" onSubmit={handleSubmit} >
+        <div className="bb-content-group__collabocate_plugin bb-collabocate_form" id="submitIssueForm">
           <div>
             <label className="bb-collabocate_label" htmlFor="issueTemplates">Choose Report Type</label>
             <br />
@@ -42,7 +42,15 @@ export const ModalPopup: React.FunctionComponent<ModalPopupProps> = (props: Moda
             <br />
             <textarea className="bb-content-group__collabocate_form-inner bb-collabocate_input bb-collabocate_textarea" id="issueBody" onChange={(e) =>setIssueBody(e.target.value)} value={issueBody}></textarea>
           </div>
-          <button className="bb-content-group__collabocate_form-inner bb-collabocate_submit-form-button" id="submitIssueButton">Submit Issue Ticket</button>
+          <button className="bb-content-group__collabocate_form-inner bb-collabocate_submit-form-button" id="submitIssueButton" onClick={handleButtonClick}>Submit Issue Ticket</button>
+           {showButton && (
+            <div className="bb-collabocate_auth-options">
+              <button className="bb-content-group__collabocate_form-inner bb-collabocate_submit-form-button bb-collabocate_margin-vertical" onClick={handleSubmitAnonymous}>
+                Continue as Anonymous User
+              </button>
+              <button className="bb-content-group__collabocate_form-inner bb-collabocate_submit-form-button" onClick={handleSubmit}>Continue as GitHub User</button>
+            </div>
+          )}
           {toastrMessage && (
             <div>
               <div>{toastrMessage.message}</div>
@@ -58,7 +66,10 @@ export const ModalPopup: React.FunctionComponent<ModalPopupProps> = (props: Moda
               </div>
             </div>
           )}
-        </form>
+          {showGithubLoginButton && (
+            <button className="bb-collabocate_github-button" onClick={loginWithGithub}>Login with Github</button>
+          )}
+        </div>
       </div>
     </>
   );
