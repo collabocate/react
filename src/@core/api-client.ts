@@ -2,7 +2,7 @@ const API_BASE_URL= process.env.REACT_APP_BACKEND_API_URL;
 
 // Custom fetch API client
 export const apiClient = async <T>(endpoint: string, options: RequestInit = {}): Promise<T> => {
-  const token = typeof window !== 'undefined' ? localStorage.getItem('collabocate_authToken') : ''; // Get token from localStorage
+  const token = typeof window !== 'undefined' ? localStorage.getItem('authToken') : ''; // Get token from localStorage
 
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
