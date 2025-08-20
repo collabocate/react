@@ -10,7 +10,7 @@ export const ModalPopup: React.FunctionComponent<ModalPopupProps> = (props: Moda
   const { instanceId, updateInstanceId } = GlobalContainer.useContainer();
   console.log('ModalPopup instance_id:', instanceId);
   const { issueBody, setIssueBody, issueTitle, setIssueTitle } = GitHubIssueTemplateContainer.useContainer();
-  const { toastrMessage, handleSubmit, showButton, handleButtonClick, handleSubmitAnonymous, loginWithGithub, showGithubLoginButton } = SubmitIssueContainer.useContainer();
+  const { toastrMessage, handleSubmit, showButton, handleButtonClick, handleSubmitAnonymous, showGithubLoginButton } = SubmitIssueContainer.useContainer();
 
   return (
     <>
@@ -67,7 +67,7 @@ export const ModalPopup: React.FunctionComponent<ModalPopupProps> = (props: Moda
             </div>
           )}
           {showGithubLoginButton && (
-            <button className="bb-collabocate_github-button" onClick={loginWithGithub}>Login with Github</button>
+            <a href='/login' className="bb-collabocate_github-button">Login with Github</a>
           )}
         </div>
       </div>

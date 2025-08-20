@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { createContainer } from 'unstated-next';
 import { submitIssue, submitAnonymousIssue } from '../../@core/submitIssue';
 import { GitHubIssueTemplateContainer } from './useTemplate';
-import { signInWithGithub } from '../../@core/auth';
 
 function useSubmitIssueState (){
   const { issueBody, setIssueBody, issueTitle, setIssueTitle, setDropdownButtonTitle, dropdownButtonText } = GitHubIssueTemplateContainer.useContainer();
@@ -15,19 +14,9 @@ function useSubmitIssueState (){
     setShowButton(!showButton);
   }
 
-  const loginWithGithub = () => {
-    signInWithGithub()
-  }
-
   // Shared submission logic
   const handleSubmission = async (data: { title: string; body: string }, isAnonymous: boolean) => {
     try {
-      // If the user is not authenticated, prompt them to log in
-      if (!isAnonymous) {
-        setToastrMessage({ message: 'Please log in to submit an issue.' });
-        setShowGithubLoginButton(true);
-        return;
-      }
       const response = isAnonymous ? await submitAnonymousIssue(data) : await submitIssue(data);
 
       setIssueTitle('');
@@ -40,11 +29,12 @@ function useSubmitIssueState (){
       setDropdownButtonTitle(dropdownButtonText);
 
       return response;
-    } catch (error) {
-      setToastrMessage({
-        message: 'Failed to submit issue'
-      });
-      throw error;
+    } catch (error: any) {
+      console.log('Error submitting issue:', error);
+      if (error?.status === 401) {
+        setShowGithubLoginButton(true);
+        setToastrMessage({message: 'Please Login as a GitHub User to submit an issue ticket'});
+      }
     }
   };
 
@@ -71,7 +61,6 @@ function useSubmitIssueState (){
     handleSubmitAnonymous,
     handleButtonClick,
     showButton,
-    loginWithGithub,
     showGithubLoginButton
   };
 }
