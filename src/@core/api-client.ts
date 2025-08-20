@@ -16,13 +16,19 @@ export const apiClient = async <T>(endpoint: string, options: RequestInit = {}):
     headers,
   });
 
+  const data = await response.json();
+
   if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.message ||  `Error ${response.status}: ${response.statusText}`);
+    // 🔥 throw structured error instead of plain Error
+    throw {
+      status: response.status,
+      message: data?.error?.message || response.statusText,
+      raw: data
+    };
   }
 
   // Type casting to ensure that response data is in the expected format
-  return (await response.json()) as T;
+  return data as T;
 } catch (error) {
     console.log(`API Error [${API_BASE_URL}${endpoint}]:`, error);
     throw error;
