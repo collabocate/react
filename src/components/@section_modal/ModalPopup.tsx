@@ -67,7 +67,7 @@ export const ModalPopup: React.FunctionComponent<ModalPopupProps> = (props: Moda
             </div>
           )}
           {showGithubLoginButton && (
-            <a href='/login' className="bb-collabocate_github-button">Login with Github</a>
+            <a href='http://app.localhost:3000/login' className="bb-collabocate_github-button">Login with Github</a>
           )}
         </div>
       </div>
